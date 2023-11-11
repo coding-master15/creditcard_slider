@@ -3,9 +3,9 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 
 class PageSlider extends StatelessWidget {
-  PageController _pageController;
+  PageController? _pageController;
 
-  final List<Widget> cards;
+  final List<Widget>? cards;
   final double percentOfUpperCard;
   final int initialPage;
   final bool repeatCards;
@@ -21,7 +21,7 @@ class PageSlider extends StatelessWidget {
       initialPage: initialPage,
     );
     assert(initialPage >= 0);
-    assert(initialPage < cards.length);
+    assert(initialPage < cards!.length);
     assert(percentOfUpperCard >= 0);
     assert(percentOfUpperCard <= pi / 2);
   }
@@ -32,28 +32,28 @@ class PageSlider extends StatelessWidget {
       return PageView.builder(
         controller: _pageController,
         scrollDirection: Axis.vertical,
-        itemBuilder: (context, index) => _builder(index, cards.length),
+        itemBuilder: (context, index) => _builder(index, cards!.length),
       );
     }
     return PageView.builder(
       controller: _pageController,
-      itemCount: cards.length,
+      itemCount: cards!.length,
       scrollDirection: Axis.vertical,
-      itemBuilder: (context, index) => _builder(index, cards.length),
+      itemBuilder: (context, index) => _builder(index, cards!.length),
     );
   }
 
   _builder(int index, int length) {
     return AnimatedBuilder(
-      animation: _pageController,
+      animation: _pageController!,
       builder: (context, child) {
         double value = 1.0;
 
         int mIndex = index % length;
         int mInitialPage = initialPage % length;
 
-        if (_pageController.position.haveDimensions) {
-          value = _pageController.page - index;
+        if (_pageController!.position.haveDimensions) {
+          value = _pageController!.page! - index;
 
           if (value >= 0) {
             double _lowerLimit = percentOfUpperCard;
@@ -90,7 +90,7 @@ class PageSlider extends StatelessWidget {
           ),
         );
       },
-      child: cards[index % length],
+      child: cards![index % length],
     );
   }
 }

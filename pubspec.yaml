@@ -4,12 +4,12 @@ version: 1.0.1
 homepage: https://github.com/GursheeshSingh/creditcard_slider
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  auto_size_text: ^2.1.0
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:
